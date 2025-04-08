@@ -28,7 +28,7 @@ class UserController extends Controller
             'full_name' => 'required|unique:users,full_name',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8|confirmed',
-            'role_id' => 'required'
+            'role_id' => 'required|exists:roles,id|unique:users,role_id'
             // 'role_id' => 'required|exists:roles,id'
             
         ]);
@@ -88,7 +88,7 @@ class UserController extends Controller
     {
         //
         $user->delete();
-
+ 
         return [
             'message' => 'User Deleted Successfully'
         ];
